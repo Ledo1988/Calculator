@@ -7,26 +7,24 @@ let comissionMyr = document.querySelector('#comissionMyr');
 let comissionRange = document.querySelector('#comissionRange');
 
 let RATE_MIN = 0;
-let RATE_MAX = 1000000;
+let RATE_MAX = 1000000000;
 
-let formatterNumber = new Intl.NumberFormat('ru-RU', { minimumIntegerDigits: 1, minimumFractionDigits: 2, maximumFractionDigits: 2});
-let formatterCurrencyUsd = new Intl.NumberFormat('ru', {
-	style: 'currency',
-	currency: 'USD',
-});
-let formatterCurrencyMyr = new Intl.NumberFormat('ru', {
-	style: 'currency',
-	currency: 'MYR',
-});
+//let formatterNumber = new Intl.NumberFormat('ru-RU', { minimumIntegerDigits: 1, minimumFractionDigits: 2, maximumFractionDigits: 2});
+// let formatterCurrencyUsd = new Intl.NumberFormat('ru', {
+// 	style: 'currency',
+// 	currency: 'USD',
+// });
+// let formatterCurrencyMyr = new Intl.NumberFormat('ru', {
+// 	style: 'currency',
+// 	currency: 'MYR',
+// });
 
 rateUsd.addEventListener('input', inputHandler);
 rateMyr.addEventListener('input', inputHandler);
 comissionUsd.addEventListener('input', inputHandler);
 comissionMyr.addEventListener('input', inputHandler);
-
-// rateUsd.addEventListener('blur', blurHandler);
-// rateMyr.addEventListener('blur', blurHandler);
-
+rateRange.addEventListener('input', rangeHandler);
+comissionRange.addEventListener('input', rangeHandler);
 
 function numberMinMax(item, calc) {
 	let initCalc = calc;
@@ -37,7 +35,6 @@ function numberMinMax(item, calc) {
 		return calc;
 	} else if (calc > RATE_MAX) {
 		calc = RATE_MAX;
-		console.log(calc);
 		return calc;
 	} else {
 		return initCalc;
@@ -49,8 +46,11 @@ function checkKey(item) {
 		.replace(/(,.*?),(.*,)?/, "$1")
 		.replace(/(\,[\d]{2})./g, '$1');
 
-	if (clean !== item.value) item.value = clean;
-
+	if (clean !== item.value) {
+		console.log('[hty');
+	} else {
+		item.value = clean;
+	}
 	return clean;
 }
 
@@ -59,14 +59,20 @@ function inputHandler(event) {
 	let initItem = this;
 	number = checkKey(this);
 	number = numberMinMax(initItem, number);
-	console.log(number);
+	//number = parseFloat(number.replace(/,/g, ''));
 	this.value = number;
+
+	if (this.dataset.desc.includes('rate') ) {
+		rateRange.value = this.value;
+	} else if (this.dataset.desc.includes('comission')) {
+		comissionRange.value = this.value;
+	}
 }
 
-
-
-
-
+function rangeHandler(event) {
+	let rangeParent = this.closest(".calculator__item").getElementsByClassName("rangeParent")[0];
+	rangeParent.value = parseInt(this.value).toFixed(2).replace(".", ",");
+}
 
 	// for (let letter of this.value) {
 	// 	if ('0123456789,'.includes(letter)) {

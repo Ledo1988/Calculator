@@ -18,16 +18,20 @@
         </div>
         <div class="calculator__items_wrapper">
           <div class="calculator__item">
-            <label class="item__title" for="rateUsd">Стоимость турпутёвки от туроператора:</label>
-            <input class="form-control" type="text" id="rateUsd" data-cur="usd" aria-describedby="rateUsdHolder" value="0">
-            <input class="form-control" type="text" id="rateMyr" data-cur="myr" aria-describedby="rateMyrHolder" value="0">
-            <input class="form-control-range" type="range" id="rateRange" min="0" max="1000000">
+            <div class="item__title">Стоимость турпутёвки от туроператора:</div>
+            <label for="rateUsd">USD</label>
+            <input class="form-control rangeParent" type="text" id="rateUsd" data-desc="rateUsdHolder" value="0">
+            <label for="rateMyr">MYR</label>
+            <input class="form-control" type="text" id="rateMyr" data-desc="rateMyrHolder" value="0">
+            <input class="form-control-range" type="range" data-desc="rateRangeHolder" id="rateRange" min="0" max="1000000000">
           </div>
           <div class="calculator__item">
-            <label class="item__title" for="comissionUsd">10% комиссия турагента:</label>
-            <input class="form-control" type="text" id="comissionUsd" aria-describedby="comissionUsdHolder" value="0">
-            <input class="form-control" type="text" id="comissionMyr" aria-describedby="comissionMyrHolder" value="0">
-            <input class="form-control-range" type="range" id="comissionRange" min="0" max="1000000">
+            <div class="item__title">10% комиссия турагента:</div>
+            <label for="comissionUsd">USD</label>
+            <input class="form-control rangeParent" type="text" id="comissionUsd" data-cur="usd" data-desc="comissionUsdHolder" value="0">
+            <label for="comissionMyr">MYR</label>
+            <input class="form-control" type="text" id="comissionMyr" data-cur="myr" data-desc="comissionMyrHolder" value="0">
+            <input class="form-control-range" type="range" data-desc="comissionRangeHolder" id="comissionRange" min="0" max="1000000000">
           </div>
           <div class="calculator__item">
             <label class="item__title" for="bonus">Бонусы</label>
@@ -38,8 +42,8 @@
         <div class="calculator-footer">
           <div class="my-result">
             <div class="my-result__title">Итоговая стоимость турпутёвки для клиента:</div>
-            <div class="my-result__item"><span id="paymentUsd">0</span>&nbsp;USD</div>
-            <div class="my-result__item"><span id="paymentMyr">0</span>&nbsp;MYR</div>
+            <div class="my-result__item"><span id="paymentUsd" data-cur="usd">0</span>&nbsp;USD</div>
+            <div class="my-result__item"><span id="paymentMyr" data-cur="myr">0</span>&nbsp;MYR</div>
           </div><small class="form-text text-muted"><span id="bonusTotal">0</span>&nbsp;бонусов начислено</small>
         </div>
       </div>
