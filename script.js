@@ -1,76 +1,112 @@
-let creditText = document.querySelector('#creditText');
-let creditRange = document.querySelector('#creditRange');
+let rateUsd = document.querySelector('#rateUsd');
+let rateMyr = document.querySelector('#rateMyr');
+let rateRange = document.querySelector('#rateRange');
 
-let CREDIT_MIN = 0;
-let CREDIT_MAX = 1000000;
-let PERIOD_MIN = 0;
-let PERIOD_MAX = 20;
+let comissionUsd = document.querySelector('#comissionUsd');
+let comissionMyr = document.querySelector('#comissionMyr');
+let comissionRange = document.querySelector('#comissionRange');
 
-let firstContributionText = document.querySelector('#firstContributionText');
-let returnPeriodText = document.querySelector('#returnPeriodText');
+let RATE_MIN = 0;
+let RATE_MAX = 1000000;
 
-let formatterNumber = new Intl.NumberFormat('ru');
+let formatterNumber = new Intl.NumberFormat('ru-RU', { minimumIntegerDigits: 1, minimumFractionDigits: 2, maximumFractionDigits: 2});
+let formatterCurrencyUsd = new Intl.NumberFormat('ru', {
+	style: 'currency',
+	currency: 'USD',
+});
+let formatterCurrencyMyr = new Intl.NumberFormat('ru', {
+	style: 'currency',
+	currency: 'MYR',
+});
 
-creditText.addEventListener('input', inputHandler);
-firstContributionText.addEventListener('input', inputHandler);
-returnPeriodText.addEventListener('input', inputHandler);
+rateUsd.addEventListener('input', inputHandler);
+rateMyr.addEventListener('input', inputHandler);
+comissionUsd.addEventListener('input', inputHandler);
+comissionMyr.addEventListener('input', inputHandler);
+
+// rateUsd.addEventListener('blur', blurHandler);
+// rateMyr.addEventListener('blur', blurHandler);
 
 
 function numberMinMax(item, calc) {
+	let initCalc = calc;
+	calc = parseFloat(calc.replace(",", "."));
 
-	if (item == returnPeriodText) {
-
-		if (calc < PERIOD_MIN) {
-			calc = PERIOD_MIN;
-		}
-
-		if (calc > PERIOD_MAX) {
-			calc = PERIOD_MAX;
-		}
-
+	if (calc < RATE_MIN) {
+		calc = RATE_MIN;
+		return calc;
+	} else if (calc > RATE_MAX) {
+		calc = RATE_MAX;
+		console.log(calc);
+		return calc;
 	} else {
-		if (calc < CREDIT_MIN) {
-			calc = CREDIT_MIN;
-		}
-
-		if (calc > CREDIT_MAX) {
-			calc = CREDIT_MAX;
-		}
+		return initCalc;
 	}
+}
 
-	return calc;
+function checkKey(item) {
+	let clean = item.value.replace(/[^0-9,]/g, "")
+		.replace(/(,.*?),(.*,)?/, "$1")
+		.replace(/(\,[\d]{2})./g, '$1');
+
+	if (clean !== item.value) item.value = clean;
+
+	return clean;
 }
 
 function inputHandler(event) {
 	let number = '';
-
-	if (this == returnPeriodText) {
-		let initItem = this;
-
-		for (let letter of this.value) {
-			if ('0123456789'.includes(letter)) {
-				number += letter;
-			}
-		}
-
-		number = parseInt(number);
-		number = numberMinMax(initItem, number);
-		number = formatterNumber.format(number);
-
-	} else {
-		let initItem = this;
-
-		this.value = this.value.replace(/[^\d\,]/g, "");
-		number = this.value;
-
-		if (number.match(/\,/g) != null && number.match(/\,/g).length > 1){
-			number = number.substr(0, number.lastIndexOf(","));
-		}
-
-		number = numberMinMax(initItem, number);
-
-	}
-
+	let initItem = this;
+	number = checkKey(this);
+	number = numberMinMax(initItem, number);
+	console.log(number);
 	this.value = number;
 }
 
+
+
+
+
+
+	// for (let letter of this.value) {
+	// 	if ('0123456789,'.includes(letter)) {
+	// 		number += letter;
+	// 	}
+	// }
+	//
+	// if (number.match(/\,/g) != null && number.match(/\,/g).length > 1){
+	// 	number = number.substr(0, number.lastIndexOf(","));
+	// }
+	//
+	//
+	// number = numberMinMax(initItem, number);
+	// number = formatterNumber.format(number);
+
+	// // } else {
+	// 	let initItem = this;
+
+	// this.value = this.value.replace(/[^\d\,]/g, "");
+	// number = this.value;
+	//
+	// if (number.match(/\,/g) != null && number.match(/\,/g).length > 1){
+	// 		number = number.substr(0, number.lastIndexOf(","));
+	// 	}
+
+
+	//number = parseFloat(number.replace(",", "."));
+	//number = "" + number.replace(".", ",");
+	//number = formatterNumber.format(number);
+
+
+
+// function blurHandler(event) {
+//
+// 	if (this.dataset.cur == 'usd') {
+// 		this.value = formatterCurrencyUsd.format();
+// 	} else {
+// 		this.value = formatterCurrencyMyr.format();
+// 	}
+//
+//
+//
+// }

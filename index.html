@@ -14,45 +14,33 @@
     <div class="container">
       <div class="calculator">
         <div class="calculator__title">
-          <h1>Калькулятор кредита на покупку по ставке 5% годовых</h1>
+          <h1>Калькулятор расчёта стоимости турпутёвки турагентом для клиента</h1>
         </div>
         <div class="calculator__items_wrapper">
-          <div class="calculator__item calculator__item_radio">
-            <div class="item__title">Валюта кредита</div>
-            <div class="radio-buttons">
-              <div class="radio-wrapper">
-                <input type="radio" id="radio1" name="currency" value="USD" checked="checked">
-                <label for="radio1"><span>USD</span></label>
-              </div>
-              <div class="radio-wrapper">
-                <input type="radio" id="radio2" name="currency" value="MYR">
-                <label for="radio2"><span>MYR</span></label>
-              </div>
-            </div>
+          <div class="calculator__item">
+            <label class="item__title" for="rateUsd">Стоимость турпутёвки от туроператора:</label>
+            <input class="form-control" type="text" id="rateUsd" data-cur="usd" aria-describedby="rateUsdHolder" value="0">
+            <input class="form-control" type="text" id="rateMyr" data-cur="myr" aria-describedby="rateMyrHolder" value="0">
+            <input class="form-control-range" type="range" id="rateRange" min="0" max="1000000">
           </div>
           <div class="calculator__item">
-            <label class="item__title" for="creditText">Стоимость покупки</label>
-            <input class="form-control" type="text" id="creditText" aria-describedby="creditNumberHolder" value="30 000">
-            <input class="form-control-range" type="range" id="creditRange" min="0" max="1000000"><small class="form-text text-muted" id="creditNumberHolder">Сумма, которую за вас заплатит банк</small>
-          </div>
-          <div class="calculator__item">
-            <label class="item__title" for="firstContributionText">Первоначальный взнос:</label>
-            <input class="form-control" type="text" id="firstContributionText" aria-describedby="firstContributionNumberHolder" value="15 000">
-            <input class="form-control-range" type="range" id="firstContributionRange" min="0" max="1000000"><small class="form-text text-muted" id="firstContributionNumberHolder">Ваш первичный взнос в качестве погашения кредита</small>
-          </div>
-          <div class="calculator__item">
-            <label class="item__title" for="returnPeriodText">Срок кредита:</label>
-            <input class="form-control" type="text" id="returnPeriodText" aria-describedby="returnPeriodNumberHolder" value="5 лет">
-            <input class="form-control-range" type="range" id="returnPeriodRange" min="0" max="15"><small class="form-text text-muted" id="returnPeriodNumberHolder">Как долго в годах планируете возвращать долг</small>
+            <label class="item__title" for="comissionUsd">10% комиссия турагента:</label>
+            <input class="form-control" type="text" id="comissionUsd" aria-describedby="comissionUsdHolder" value="0">
+            <input class="form-control" type="text" id="comissionMyr" aria-describedby="comissionMyrHolder" value="0">
+            <input class="form-control-range" type="range" id="comissionRange" min="0" max="1000000">
           </div>
           <div class="calculator__item">
             <label class="item__title" for="bonus">Бонусы</label>
-            <input class="form-control" type="text" id="bonus" aria-describedby="bonusHolder" value="500" disabled><small class="form-text text-muted" id="bonusHolder">*Бонусы начисляются при сроке кредита более 5 лет</small>
+            <input class="form-control" type="text" id="bonus" aria-describedby="bonusHolder" value="500" disabled><small class="form-text text-muted" id="bonusHolder">* бонусы начисляются при сумме комиссии более 100 USD (444 MYR)</small>
           </div>
         </div>
         <hr>
         <div class="calculator-footer">
-          <p class="my-result"><strong>Итого:&nbsp;</strong><span id="payment">34 000</span></p><small class="form-text text-muted">Начислено бонусов:&nbsp;<span id="common">0</span></small>
+          <div class="my-result">
+            <div class="my-result__title">Итоговая стоимость турпутёвки для клиента:</div>
+            <div class="my-result__item"><span id="paymentUsd">0</span>&nbsp;USD</div>
+            <div class="my-result__item"><span id="paymentMyr">0</span>&nbsp;MYR</div>
+          </div><small class="form-text text-muted"><span id="bonusTotal">0</span>&nbsp;бонусов начислено</small>
         </div>
       </div>
     </div>
