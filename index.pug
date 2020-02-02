@@ -1,0 +1,54 @@
+doctype html
+html(lang="ru")
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		title Калькулятор
+		meta(name="theme-color" content="#fff")
+		meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+		meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+		link(href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic' rel='stylesheet')
+		link(rel="stylesheet" href="style.css")
+	body
+		.container
+			.calculator
+				.calculator__title
+					h1 Калькулятор кредита на покупку по ставке 5% годовых
+				.calculator__items_wrapper
+					.calculator__item.calculator__item_radio
+						.item__title Валюта кредита
+						.radio-buttons
+							.radio-wrapper
+								input(type="radio" id="radio1" name="currency" value="USD" checked="checked")
+								label(for="radio1")
+									span USD
+							.radio-wrapper
+								input(type="radio" id="radio2" name="currency" value="MYR")
+								label(for="radio2")
+									span MYR
+					.calculator__item
+						label(for="creditText" class="item__title") Стоимость покупки
+						input(type="text" id="creditText" class="form-control" aria-describedby="creditNumberHolder" value="30 000")
+						input(type="range" class="form-control-range" id="creditRange" min="0" max="1000000")
+						small(id="creditNumberHolder" class="form-text text-muted") Сумма, которую за вас заплатит банк
+					.calculator__item
+						label(for="firstContributionText" class="item__title") Первоначальный взнос:
+						input(type="text" id="firstContributionText" class="form-control" aria-describedby="firstContributionNumberHolder" value="15 000")
+						input(type="range" class="form-control-range" id="firstContributionRange" min="0" max="1000000")
+						small(id="firstContributionNumberHolder" class="form-text text-muted") Ваш первичный взнос в качестве погашения кредита
+					.calculator__item
+						label(for="returnPeriodText" class="item__title") Срок кредита:
+						input(type="text" id="returnPeriodText" class="form-control" aria-describedby="returnPeriodNumberHolder" value="5 лет")
+						input(type="range" class="form-control-range" id="returnPeriodRange" min="0" max="15")
+						small(id="returnPeriodNumberHolder" class="form-text text-muted") Как долго в годах планируете возвращать долг
+					.calculator__item
+						label(for="bonus" class="item__title") Бонусы
+						input(type="text" id="bonus" class="form-control" aria-describedby="bonusHolder" value="500" disabled)
+						small(id="bonusHolder" class="form-text text-muted") *Бонусы начисляются при сроке кредита более 5 лет
+				hr
+				.calculator-footer
+					p(class="my-result")
+						strong Итого:&nbsp;
+						span(id="payment") 34 000
+					small(class="form-text text-muted") Начислено бонусов:&nbsp;
+						span(id="common") 0

@@ -1,0 +1,223 @@
+$color_black:     #000000;
+$color_white:     #ffffff;
+
+$transition:      .2s ease-in-out;
+
+$font_main:       'Roboto', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font_main;
+  font-size: 14px;
+  color: $color_black;
+}
+
+a {
+  color: $color_black;
+  display: inline-block;
+  text-decoration: none;
+}
+
+span {
+  display: inline-block;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+h1 {
+  font-family: $font_main;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  display: inline-block;
+  background: none;
+  border: 0;
+  color: inherit;
+  /* cursor: default; */
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-appearance: none !important; /* for input */
+  -webkit-user-select: none; /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+}
+
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input {
+  width: 100%;
+  font-size: 14px;
+  font-family: $font_main;
+  font-weight: 500;
+  padding: 15px 10px;
+  background: #FFFFFF;
+  border: 1px solid #DADADA;
+  border-radius: 2px;
+  transition: $transition;
+
+  &:active, &:focus, &:hover {
+    border-color: $color_black;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+
+input:-webkit-autofill  {
+  background-color: $color_white !important;
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 20px;
+
+  input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+
+    &:checked {
+      ~ label::before {
+        border-color: $color_black;
+      }
+
+      ~ label::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: $font_main;
+    font-size: 16px;
+    position: relative;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+
+    &:before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border: 1px solid #DADADA;
+      box-sizing: border-box;
+      margin-right: 18px;
+      transition: 0.2s ease-in-out;
+      flex-shrink: 0;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      transition: 0.2s ease-in-out;
+      opacity: 0;
+      background-color: black;
+      border-radius: 50%;
+      border: 5px solid white;
+      z-index: 0;
+    }
+
+  }
+
+}
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+//
+.calculator__title {
+  margin-bottom: 24px;
+}
+
+.calculator__item {
+  margin-bottom: 24px;
+  max-width: 270px;
+
+  .item__title {
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+  }
+}
+
+
+.my-container {
+  margin-top: 25px;
+}
+
+.my-card-header {
+  text-align: center;
+}
+
+.my-result {
+  font-size: 30px;
+}
