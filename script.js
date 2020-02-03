@@ -90,9 +90,6 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			comissionM: interCalcMyrComission,
 		};
 
-		console.log(interCalculationObj.rateU);
-		console.log(interCalculationObj.rateM);
-		console.log(interCalculationObj.comissionU);
 		// Return it
 		return interCalculationObj;
 	}
@@ -135,7 +132,8 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		rateMyr.value = objInterCalculation.rateM;
 		comissionUsd.value = objInterCalculation.comissionU;
 		comissionMyr.value = objInterCalculation.comissionM;
-
+		rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
+		comissionRange.value = parseInt(comissionUsd.value.replace(/,/, '.'));
 
 
 
@@ -185,7 +183,7 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 
 	}
 
-	//RangesHandler
+	//RangesHandle
 	function rangeHandler($this) {
 		let rangeParentUsd = '';
 		let rangeParentMyr = '';
@@ -194,12 +192,25 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		rangeParentUsd = $this.closest(".calculator__item").getElementsByClassName("rangeParentUsd")[0];
 		rangeParentUsd.value = parseFloat($this.value).toFixed(2).replace(".", ",");
 
+		let objInterCalculation = interCalculation(rangeParentUsd.value);
 
-		rangeParentMyr = $this.closest(".calculator__item").getElementsByClassName("rangeParentMyr")[0];
-		rangeMyrNumber = rangeParentUsd.value.replace(/,/, '.');
-		rangeMyrNumber = parseFloat(rangeMyrNumber*RATE_MYR).toFixed(2).replace(/\./g, ',');
-		rateMyr.value = rangeMyrNumber;
-		//rangeParentMyr.value = parseFloat(rangeMyrNumber).toFixed(2).replace(".", ",");
+		rateUsd.value = objInterCalculation.rateU;
+		rateMyr.value = objInterCalculation.rateM;
+		comissionUsd.value = objInterCalculation.comissionU;
+		comissionMyr.value = objInterCalculation.comissionM;
+		//rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
+		//comissionRange.value = parseInt(comissionUsd.value.replace(/,/, '.'));
+
+		console.log(rateRange.value);
+		console.log(comissionRange.value);
+
+
+		//
+		// rangeParentMyr = $this.closest(".calculator__item").getElementsByClassName("rangeParentMyr")[0];
+		// rangeMyrNumber = rangeParentUsd.value.replace(/,/, '.');
+		// rangeMyrNumber = parseFloat(rangeMyrNumber*RATE_MYR).toFixed(2).replace(/\./g, ',');
+		// rateMyr.value = rangeMyrNumber;
+		// //rangeParentMyr.value = parseFloat(rangeMyrNumber).toFixed(2).replace(".", ",");
 	}
 
 
