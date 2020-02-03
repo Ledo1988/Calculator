@@ -23,7 +23,7 @@ html(lang="ru")
 						.calculator__input
 							input(type="text" id="rateMyr" class="rangeParentMyr" value="0")
 							label(for="rateMyr") MYR
-						input(type="range" id="rateRange" value="0" step="10" min="0" max="1000000")
+						input(type="range" id="rateRange" value="0" step="10" min="0" max="10000")
 					.calculator__item
 						.item__title 10% комиссия турагента:
 						.calculator__input
@@ -32,23 +32,23 @@ html(lang="ru")
 						.calculator__input
 							input(type="text" id="comissionMyr" class="rangeParentMyr" value="0")
 							label(for="comissionMyr") MYR
-						input(type="range" value="0" step="10" id="comissionRange" min="0" max="100000")
+						input(type="range" value="0" step="10" id="comissionRange" min="0" max="10000")
 					.calculator__item
 						label(for="bonus" class="item__title") Бонусы
 						input(type="text" id="bonus" value="500" disabled)
-						small(id="bonusHolder" class="form-text text-muted") * бонусы начисляются при сумме комиссии более 1000 USD (4440 MYR)
+						small(id="bonusHolder" class="item__desc") * бонусы начисляются при сумме комиссии более 500 USD (2220 MYR)
 				hr
 				.calculator-footer
 					.my-result
 						.my-result__title Итоговая стоимость турпутёвки для клиента:
 						.my-result__item
-							span(id="paymentUsd" data-cur="usd" ) 0
+							span(id="totalUsd") 0
 							| &nbsp;USD
 						.my-result__item
-							span(id="paymentMyr" data-cur="myr" ) 0
+							span(id="totalMyr") 0
 							| &nbsp;MYR
-					small(class="form-text text-muted")
-						span(id="bonusTotal") 0
+					small
+						span(id="totalBonus") 0
 						| &nbsp;бонусов начислено
 	footer
 		script(type="text/javascript" src="script.js")

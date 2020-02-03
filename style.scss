@@ -50,7 +50,7 @@ img {
 h1 {
   font-family: $font_main;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 26px;
   margin-bottom: 10px;
 }
 
@@ -197,6 +197,10 @@ input:-webkit-autofill  {
 }
 
 //
+.calculator {
+  width: 600px;
+  margin: 0 auto;
+}
 .calculator__title {
   margin-bottom: 24px;
 }
@@ -207,7 +211,7 @@ input:-webkit-autofill  {
 
   .item__title {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 8px;
     display: block;
   }
@@ -222,6 +226,11 @@ input:-webkit-autofill  {
   label {
     margin-left: 24px;
   }
+}
+
+input.active {
+  border-color: #00b5a4;
+  transition: .2s ease-in-out;
 }
 
 // Styling Cross-Browser Compatible Range Inputs with Sass
@@ -377,4 +386,9 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
 
 .my-result {
   font-size: 30px;
+
+  &__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
 }

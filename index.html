@@ -27,7 +27,7 @@
               <input class="rangeParentMyr" type="text" id="rateMyr" value="0">
               <label for="rateMyr">MYR</label>
             </div>
-            <input type="range" id="rateRange" value="0" step="10" min="0" max="1000000">
+            <input type="range" id="rateRange" value="0" step="10" min="0" max="10000">
           </div>
           <div class="calculator__item">
             <div class="item__title">10% комиссия турагента:</div>
@@ -39,20 +39,20 @@
               <input class="rangeParentMyr" type="text" id="comissionMyr" value="0">
               <label for="comissionMyr">MYR</label>
             </div>
-            <input type="range" value="0" step="10" id="comissionRange" min="0" max="100000">
+            <input type="range" value="0" step="10" id="comissionRange" min="0" max="10000">
           </div>
           <div class="calculator__item">
             <label class="item__title" for="bonus">Бонусы</label>
-            <input type="text" id="bonus" value="500" disabled><small class="form-text text-muted" id="bonusHolder">* бонусы начисляются при сумме комиссии более 1000 USD (4440 MYR)</small>
+            <input type="text" id="bonus" value="500" disabled><small class="item__desc" id="bonusHolder">* бонусы начисляются при сумме комиссии более 500 USD (2220 MYR)</small>
           </div>
         </div>
         <hr>
         <div class="calculator-footer">
           <div class="my-result">
             <div class="my-result__title">Итоговая стоимость турпутёвки для клиента:</div>
-            <div class="my-result__item"><span id="paymentUsd" data-cur="usd">0</span>&nbsp;USD</div>
-            <div class="my-result__item"><span id="paymentMyr" data-cur="myr">0</span>&nbsp;MYR</div>
-          </div><small class="form-text text-muted"><span id="bonusTotal">0</span>&nbsp;бонусов начислено</small>
+            <div class="my-result__item"><span id="totalUsd">0</span>&nbsp;USD</div>
+            <div class="my-result__item"><span id="totalMyr">0</span>&nbsp;MYR</div>
+          </div><small><span id="totalBonus">0</span>&nbsp;бонусов начислено</small>
         </div>
       </div>
     </div>

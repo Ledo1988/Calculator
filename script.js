@@ -6,10 +6,15 @@ let comissionUsd = document.querySelector('#comissionUsd');
 let comissionMyr = document.querySelector('#comissionMyr');
 let comissionRange = document.querySelector('#comissionRange');
 
+let totalUsd = document.querySelector('#totalUsd');
+let totalMyr = document.querySelector('#totalMyr');
+let totalBonus = document.querySelector('#totalBonus');
+let bonus = document.querySelector('#bonus');
+
 const RATE_MYR = 4.44;
 
 const RATE_USD_MIN = 0;
-const RATE_USD_MAX = 1000000;
+const RATE_USD_MAX = 10000;
 const RATE_MYR_MIN = 0;
 const RATE_MYR_MAX = RATE_USD_MAX*RATE_MYR;
 
@@ -94,6 +99,17 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		return interCalculationObj;
 	}
 
+	//Total
+
+	function totalCalc(rate) {
+		let total = '';
+
+		total = rate.toString().replace(/,/, '.');
+		total = parseFloat(total*110/100).toFixed(2).replace(/\./g, ',');
+
+		return total;
+	}
+
 	//InputsHandler
 	function inputHandler($this, min, max) {
 		let number = '';
@@ -135,7 +151,20 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
 		comissionRange.value = parseInt(comissionUsd.value.replace(/,/, '.'));
 
+		totalUsd.value = totalCalc(rateUsd.value);
+		totalUsd.innerHTML = totalUsd.value;
+		totalMyr.innerHTML = totalCalc(rateMyr.value);
 
+
+		let calcBonus = parseFloat(comissionUsd.value).toFixed(2);
+
+		if (calcBonus > 500) {
+			totalBonus.innerHTML = '500';
+			bonus.classList.add('active');
+		} else {
+			totalBonus.innerHTML = '0';
+			bonus.classList.remove('active');
+		}
 
 		// if ($this.id == 'rateUsd') {
 		// 	$this.value = number;
@@ -198,11 +227,23 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		rateMyr.value = objInterCalculation.rateM;
 		comissionUsd.value = objInterCalculation.comissionU;
 		comissionMyr.value = objInterCalculation.comissionM;
+
+		totalUsd.innerHTML = totalCalc(rateUsd.value);
+		totalMyr.innerHTML = totalCalc(rateMyr.value);
+
+		let calcBonus = parseFloat(comissionUsd.value).toFixed(2);
+
+		if (calcBonus > 500) {
+			totalBonus.innerHTML = '500';
+			bonus.classList.add('active');
+		} else {
+			totalBonus.innerHTML = '0';
+			bonus.classList.remove('active');
+		}
+
+
 		//rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
 		//comissionRange.value = parseInt(comissionUsd.value.replace(/,/, '.'));
-
-		console.log(rateRange.value);
-		console.log(comissionRange.value);
 
 
 		//
