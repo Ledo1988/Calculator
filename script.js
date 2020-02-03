@@ -13,33 +13,15 @@ const RATE_USD_MAX = 1000000;
 const RATE_MYR_MIN = 0;
 const RATE_MYR_MAX = RATE_USD_MAX*RATE_MYR;
 
-const COMMISSION_USD_MIN = 0;
-const COMMISSION_USD_MAX = RATE_USD_MAX/100*10;
-const COMMISSION_MYR_MIN = 0;
-const COMMISSION_MYR_MAX = RATE_MYR_MAX/100*10;
+const COMISSION_USD_MIN = 0;
+const COMISSION_USD_MAX = RATE_USD_MAX/100*10;
+const COMISSION_MYR_MIN = 0;
+const COMISSION_MYR_MAX = RATE_MYR_MAX/100*10;
 
-//let formatterNumber = new Intl.NumberFormat('ru-RU', { minimumIntegerDigits: 1, minimumFractionDigits: 2, maximumFractionDigits: 2});
-// let formatterCurrencyUsd = new Intl.NumberFormat('ru', {
-// 	style: 'currency',
-// 	currency: 'USD',
-// });
-// let formatterCurrencyMyr = new Intl.NumberFormat('ru', {
-// 	style: 'currency',
-// 	currency: 'MYR',
-// });
-
-// rateUsd.addEventListener('input', inputHandler);
-// rateMyr.addEventListener('input', inputHandler);
-// comissionUsd.addEventListener('input', inputHandler);
-// comissionMyr.addEventListener('input', inputHandler);
-//
-// rateRange.addEventListener('input', rangeHandler);
-// comissionRange.addEventListener('input', rangeHandler);
-
-setDoubleDependencies(rateUsd, rateRange, RATE_USD_MIN, RATE_USD_MAX)
+setDoubleDependencies(rateUsd, rateRange, RATE_USD_MIN, RATE_USD_MAX);
 setDoubleDependencies(rateMyr, rateRange,  RATE_MYR_MIN, RATE_MYR_MAX);
-setDoubleDependencies(comissionUsd, comissionRange, COMMISSION_USD_MIN, COMMISSION_USD_MAX);
-setDoubleDependencies(comissionMyr, comissionRange, COMMISSION_MYR_MIN, COMMISSION_MYR_MAX);
+setDoubleDependencies(comissionUsd, comissionRange, COMISSION_USD_MIN, COMISSION_USD_MAX);
+setDoubleDependencies(comissionMyr, comissionRange, COMISSION_MYR_MIN, COMISSION_MYR_MAX);
 
 function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 
@@ -83,10 +65,43 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 
 	}
 
+	function interCalculation(value) {
+		let interCalcUsd = '';
+		let numberUsd = '';
+		let interCalcMyr = '';
+		let interCalcUsdComission = '';
+		let interCalcMyrComission = '';
+		let interCalculationObj = {};
+
+		interCalcUsd = value;
+
+		numberUsd = interCalcUsd.toString().replace(/,/, '.');
+
+		interCalcMyr = parseFloat(numberUsd*RATE_MYR).toFixed(2).replace(/\./g, ',');
+
+		interCalcUsdComission = parseFloat(numberUsd/100*10).toFixed(2).replace(/\./g, ',');
+
+		interCalcMyrComission = parseFloat(numberUsd*RATE_MYR/100*10).toFixed(2).replace(/\./g, ',');
+
+		interCalculationObj = {
+			rateU: interCalcUsd,
+			rateM: interCalcMyr,
+			comissionU: interCalcUsdComission,
+			comissionM: interCalcMyrComission,
+		};
+
+		console.log(interCalculationObj.rateU);
+		console.log(interCalculationObj.rateM);
+		console.log(interCalculationObj.comissionU);
+		// Return it
+		return interCalculationObj;
+	}
+
 	//InputsHandler
 	function inputHandler($this, min, max) {
 		let number = '';
-		let initItem = $this;
+		let initItem = $this
+		let interCalcValue = '';
 
 		number = checkKey($this);
 		number = numberMinMax(initItem, number, min, max);
@@ -94,7 +109,7 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 
 		$this.value = number;
 
-		let interCalcValue = $this.value;
+		interCalcValue = $this.value;
 
 		if ($this.id == 'rateUsd') {
 			interCalcValue = interCalcValue;
@@ -104,9 +119,7 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			interCalcValue = parseFloat(interCalcValue/RATE_MYR).toFixed(2).replace(/\./g, ',');
 
 		} else if ($this.id == 'comissionUsd') {
-			console.log(interCalcValue);
 			interCalcValue = interCalcValue.toString().replace(/,/, '.');
-			console.log(interCalcValue);
 			interCalcValue = parseFloat(interCalcValue*100/10).toFixed(2).replace(/\./g, ',');
 
 		} else if ($this.id == 'comissionMyr') {
@@ -114,40 +127,16 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			interCalcValue = parseFloat(interCalcValue/RATE_MYR*100/10).toFixed(2).replace(/\./g, ',');
 		}
 
+		let objInterCalculation = '';
 
-
-		function interCalculation(value) {
-			let interCalcUsd = value;
-			console.log(value);
-			let interCalcMyr = interCalcUsd.toString().replace(/,/, '.');
-
-			interCalcMyr = parseFloat(interCalcMyr*RATE_MYR).toFixed(2).replace(/\./g, ',');
-
-			let interCalcUsdComission = interCalcUsd.toString().replace(/,/, '.');
-			interCalcUsdComission = parseFloat(interCalcUsdComission/100*10).toFixed(2).replace(/\./g, ',');
-
-			let interCalcMyrComission = interCalcMyr.toString().replace(/,/, '.');
-			interCalcMyrComission = parseFloat(interCalcMyrComission/100*10).toFixed(2).replace(/\./g, ',');
-
-			let interCalculationObj = {
-				rateU: interCalcUsd,
-				rateM: interCalcMyr,
-				comissionU: interCalcUsdComission,
-				comissionM: interCalcMyrComission
-			};
-			// Return it
-			return interCalculationObj;
-		}
-
-		let objInterCalculation = interCalculation(interCalcValue);
+		objInterCalculation = interCalculation(interCalcValue);
 
 		rateUsd.value = objInterCalculation.rateU;
 		rateMyr.value = objInterCalculation.rateM;
 		comissionUsd.value = objInterCalculation.comissionU;
 		comissionMyr.value = objInterCalculation.comissionM;
-		console.log(rateMyr.value);
 
-		console.log(objInterCalculation);
+
 
 
 		// if ($this.id == 'rateUsd') {
