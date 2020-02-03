@@ -63,7 +63,11 @@ function inputHandler(event) {
 	this.value = number;
 
 	if (this.dataset.desc.includes('rate') ) {
-		rateRange.value = this.value;
+		rateRange.value = Math.round(this.value.replace(/,/, '.'));
+		console.log(rateRange.value);
+		console.log(typeof rateRange.value);
+		rateRange.value = parseInt(rateRange.value);
+		console.log(typeof rateRange.value);
 	} else if (this.dataset.desc.includes('comission')) {
 		comissionRange.value = this.value;
 	}
