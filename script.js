@@ -14,7 +14,7 @@ const RATE_MYR_MIN = 0;
 const RATE_MYR_MAX = RATE_USD_MAX*RATE_MYR;
 
 const COMMISSION_USD_MIN = 0;
-const COMMISSION_USD_MAX = RATE_USD_MIN/100*10;
+const COMMISSION_USD_MAX = RATE_USD_MAX/100*10;
 const COMMISSION_MYR_MIN = 0;
 const COMMISSION_MYR_MAX = RATE_MYR_MAX/100*10;
 
@@ -92,32 +92,108 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 		number = numberMinMax(initItem, number, min, max);
 		//number = parseFloat(number.replace(/,/g, ''));
 
-		//this.value = number;
+		$this.value = number;
+
+		let interCalcValue = $this.value;
 
 		if ($this.id == 'rateUsd') {
-			$this.value = number;
+			interCalcValue = interCalcValue;
 
-			number = $this.value.replace(/,/, '.');
-			number = parseFloat(number*RATE_MYR).toFixed(2).replace(/\./g, ',');
-			rateMyr.value = number;
-
-			//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-			rateRange.value = parseInt($this.value.replace(/,/, '.'));
 		} else if ($this.id == 'rateMyr') {
-			$this.value = number;
+			interCalcValue = interCalcValue.toString().replace(/,/, '.');
+			interCalcValue = parseFloat(interCalcValue/RATE_MYR).toFixed(2).replace(/\./g, ',');
 
-			number = $this.value.replace(/,/, '.');
-			number = parseFloat(number/RATE_MYR).toFixed(2).replace(/\./g, ',');
-			rateUsd.value = number;
+		} else if ($this.id == 'comissionUsd') {
+			console.log(interCalcValue);
+			interCalcValue = interCalcValue.toString().replace(/,/, '.');
+			console.log(interCalcValue);
+			interCalcValue = parseFloat(interCalcValue*100/10).toFixed(2).replace(/\./g, ',');
 
-			//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-			rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
+		} else if ($this.id == 'comissionMyr') {
+			interCalcValue = interCalcValue.toString().replace(/,/, '.');
+			interCalcValue = parseFloat(interCalcValue/RATE_MYR*100/10).toFixed(2).replace(/\./g, ',');
 		}
 
 
-		else if (this.id.includes('comission')) {
-			comissionRange.value = parseInt(this.value.replace(/,/, '.'));
+
+		function interCalculation(value) {
+			let interCalcUsd = value;
+			console.log(value);
+			let interCalcMyr = interCalcUsd.toString().replace(/,/, '.');
+
+			interCalcMyr = parseFloat(interCalcMyr*RATE_MYR).toFixed(2).replace(/\./g, ',');
+
+			let interCalcUsdComission = interCalcUsd.toString().replace(/,/, '.');
+			interCalcUsdComission = parseFloat(interCalcUsdComission/100*10).toFixed(2).replace(/\./g, ',');
+
+			let interCalcMyrComission = interCalcMyr.toString().replace(/,/, '.');
+			interCalcMyrComission = parseFloat(interCalcMyrComission/100*10).toFixed(2).replace(/\./g, ',');
+
+			let interCalculationObj = {
+				rateU: interCalcUsd,
+				rateM: interCalcMyr,
+				comissionU: interCalcUsdComission,
+				comissionM: interCalcMyrComission
+			};
+			// Return it
+			return interCalculationObj;
 		}
+
+		let objInterCalculation = interCalculation(interCalcValue);
+
+		rateUsd.value = objInterCalculation.rateU;
+		rateMyr.value = objInterCalculation.rateM;
+		comissionUsd.value = objInterCalculation.comissionU;
+		comissionMyr.value = objInterCalculation.comissionM;
+		console.log(rateMyr.value);
+
+		console.log(objInterCalculation);
+
+
+		// if ($this.id == 'rateUsd') {
+		// 	$this.value = number;
+		// 	let comission = '';
+		//
+		// 	comission = $this.value.replace(/,/, '.');
+		// 	comissionUsd.value = parseFloat(comission/100*10).toFixed(2).replace(/\./g, ',');
+		//
+		// 	number = $this.value.replace(/,/, '.');
+		// 	rateMyr.value = parseFloat(number*RATE_MYR).toFixed(2).replace(/\./g, ',');
+		//
+		//
+		// 	comission = rateMyr.value.replace(/,/, '.');
+		// 	comissionMyr.value = parseFloat(comission/100*10).toFixed(2).replace(/\./g, ',');
+		//
+		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
+		// 	rateRange.value = parseInt($this.value.replace(/,/, '.'));
+		// 	comissionRange.value = parseInt($this.value.replace(/,/, '.'));
+		// } else if ($this.id == 'rateMyr') {
+		// 	$this.value = number;
+		//
+		// 	number = $this.value.replace(/,/, '.');
+		// 	rateUsd.value = parseFloat(number/RATE_MYR).toFixed(2).replace(/\./g, ',');
+		//
+		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
+		// 	rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
+		// } else if ($this.id == 'comissiomUsd') {
+		// 	$this.value = number;
+		//
+		// 	number = $this.value.replace(/,/, '.');
+		// 	rateMyr.value = parseFloat(number*RATE_MYR).toFixed(2).replace(/\./g, ',');
+		//
+		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
+		// 	comissionRange.value = parseInt($this.value.replace(/,/, '.'));
+		// } else if ($this.id == 'comissiomMyr') {
+		// 	$this.value = number;
+		//
+		// 	number = $this.value.replace(/,/, '.');
+		// 	rateUsd.value = parseFloat(number/RATE_MYR).toFixed(2).replace(/\./g, ',');
+		//
+		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
+		// 	rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
+		// }
+
+
 	}
 
 	//RangesHandler
