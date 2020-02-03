@@ -7,7 +7,7 @@ html(lang="ru")
 		meta(name="theme-color" content="#fff")
 		meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
 		meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
-		link(href='//fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic' rel='stylesheet')
+		link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic' rel='stylesheet')
 		link(rel="stylesheet" href="style.css")
 	body
 		.container
@@ -17,21 +17,25 @@ html(lang="ru")
 				.calculator__items_wrapper
 					.calculator__item
 						.item__title Стоимость турпутёвки от туроператора:
-						label(for="rateUsd") USD
-						input(type="text" id="rateUsd" class="form-control rangeParent" data-desc="rateUsdHolder" value="0")
-						label(for="rateMyr") MYR
-						input(type="text" id="rateMyr" class="form-control" data-desc="rateMyrHolder" value="0")
-						input(type="range" class="form-control-range" data-desc="rateRangeHolder" id="rateRange" min="0" max="1000000000")
+						.calculator__input
+							input(type="text" id="rateUsd" class="rangeParentUsd" value="0")
+							label(for="rateUsd") USD
+						.calculator__input
+							input(type="text" id="rateMyr" class="rangeParentMyr" class="control" value="0")
+							label(for="rateMyr") MYR
+						input(type="range" id="rateRange" value="0" step="10" min="0" max="1000000")
 					.calculator__item
 						.item__title 10% комиссия турагента:
-						label(for="comissionUsd") USD
-						input(type="text" id="comissionUsd" data-cur="usd" class="form-control rangeParent" data-desc="comissionUsdHolder" value="0")
-						label(for="comissionMyr") MYR
-						input(type="text" id="comissionMyr" data-cur="myr" class="form-control" data-desc="comissionMyrHolder" value="0")
-						input(type="range" class="form-control-range" data-desc="comissionRangeHolder" id="comissionRange" min="0" max="1000000000")
+						.calculator__input
+							input(type="text" id="comissionUsd" class="rangeParentUsd" value="0")
+							label(for="comissionUsd") USD
+						.calculator__input
+							input(type="text" id="comissionMyr" class="rangeParentMyr" value="0")
+							label(for="comissionMyr") MYR
+						input(type="range" value="0" step="10" id="comissionRange" min="0" max="100000")
 					.calculator__item
 						label(for="bonus" class="item__title") Бонусы
-						input(type="text" id="bonus" class="form-control" aria-describedby="bonusHolder" value="500" disabled)
+						input(type="text" id="bonus" value="500" disabled)
 						small(id="bonusHolder" class="form-text text-muted") * бонусы начисляются при сумме комиссии более 100 USD (444 MYR)
 				hr
 				.calculator-footer

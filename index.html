@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#fff">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -19,23 +19,31 @@
         <div class="calculator__items_wrapper">
           <div class="calculator__item">
             <div class="item__title">Стоимость турпутёвки от туроператора:</div>
-            <label for="rateUsd">USD</label>
-            <input class="form-control rangeParent" type="text" id="rateUsd" data-desc="rateUsdHolder" value="0">
-            <label for="rateMyr">MYR</label>
-            <input class="form-control" type="text" id="rateMyr" data-desc="rateMyrHolder" value="0">
-            <input class="form-control-range" type="range" data-desc="rateRangeHolder" id="rateRange" min="0" max="1000000000">
+            <div class="calculator__input">
+              <input class="rangeParentUsd" type="text" id="rateUsd" value="0">
+              <label for="rateUsd">USD</label>
+            </div>
+            <div class="calculator__input">
+              <input class="rangeParentMyr control" type="text" id="rateMyr" value="0">
+              <label for="rateMyr">MYR</label>
+            </div>
+            <input type="range" id="rateRange" value="0" step="10" min="0" max="1000000">
           </div>
           <div class="calculator__item">
             <div class="item__title">10% комиссия турагента:</div>
-            <label for="comissionUsd">USD</label>
-            <input class="form-control rangeParent" type="text" id="comissionUsd" data-cur="usd" data-desc="comissionUsdHolder" value="0">
-            <label for="comissionMyr">MYR</label>
-            <input class="form-control" type="text" id="comissionMyr" data-cur="myr" data-desc="comissionMyrHolder" value="0">
-            <input class="form-control-range" type="range" data-desc="comissionRangeHolder" id="comissionRange" min="0" max="1000000000">
+            <div class="calculator__input">
+              <input class="rangeParentUsd" type="text" id="comissionUsd" value="0">
+              <label for="comissionUsd">USD</label>
+            </div>
+            <div class="calculator__input">
+              <input class="rangeParentMyr" type="text" id="comissionMyr" value="0">
+              <label for="comissionMyr">MYR</label>
+            </div>
+            <input type="range" value="0" step="10" id="comissionRange" min="0" max="100000">
           </div>
           <div class="calculator__item">
             <label class="item__title" for="bonus">Бонусы</label>
-            <input class="form-control" type="text" id="bonus" aria-describedby="bonusHolder" value="500" disabled><small class="form-text text-muted" id="bonusHolder">* бонусы начисляются при сумме комиссии более 100 USD (444 MYR)</small>
+            <input type="text" id="bonus" value="500" disabled><small class="form-text text-muted" id="bonusHolder">* бонусы начисляются при сумме комиссии более 100 USD (444 MYR)</small>
           </div>
         </div>
         <hr>
