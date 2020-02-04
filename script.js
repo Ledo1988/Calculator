@@ -200,7 +200,4 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			bonus.classList.remove('active');
 		}
 	}
-
 }
-
-
