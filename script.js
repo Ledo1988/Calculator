@@ -169,50 +169,6 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			bonus.classList.remove('active');
 		}
 
-		// if ($this.id == 'rateUsd') {
-		// 	$this.value = number;
-		// 	let comission = '';
-		//
-		// 	comission = $this.value.replace(/,/, '.');
-		// 	comissionUsd.value = parseFloat(comission/100*10).toFixed(2).replace(/\./g, ',');
-		//
-		// 	number = $this.value.replace(/,/, '.');
-		// 	rateMyr.value = parseFloat(number*RATE_MYR).toFixed(2).replace(/\./g, ',');
-		//
-		//
-		// 	comission = rateMyr.value.replace(/,/, '.');
-		// 	comissionMyr.value = parseFloat(comission/100*10).toFixed(2).replace(/\./g, ',');
-		//
-		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-		// 	rateRange.value = parseInt($this.value.replace(/,/, '.'));
-		// 	comissionRange.value = parseInt($this.value.replace(/,/, '.'));
-		// } else if ($this.id == 'rateMyr') {
-		// 	$this.value = number;
-		//
-		// 	number = $this.value.replace(/,/, '.');
-		// 	rateUsd.value = parseFloat(number/RATE_MYR).toFixed(2).replace(/\./g, ',');
-		//
-		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-		// 	rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
-		// } else if ($this.id == 'comissiomUsd') {
-		// 	$this.value = number;
-		//
-		// 	number = $this.value.replace(/,/, '.');
-		// 	rateMyr.value = parseFloat(number*RATE_MYR).toFixed(2).replace(/\./g, ',');
-		//
-		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-		// 	comissionRange.value = parseInt($this.value.replace(/,/, '.'));
-		// } else if ($this.id == 'comissiomMyr') {
-		// 	$this.value = number;
-		//
-		// 	number = $this.value.replace(/,/, '.');
-		// 	rateUsd.value = parseFloat(number/RATE_MYR).toFixed(2).replace(/\./g, ',');
-		//
-		// 	//rateRange.value = Math.round(this.value.replace(/,/, '.'));
-		// 	rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
-		// }
-
-
 	}
 
 	//RangesHandle
@@ -243,90 +199,8 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			totalBonus.innerHTML = '0';
 			bonus.classList.remove('active');
 		}
-
-
-		//rateRange.value = parseInt(rateUsd.value.replace(/,/, '.'));
-		//comissionRange.value = parseInt(comissionUsd.value.replace(/,/, '.'));
-
-
-		//
-		// rangeParentMyr = $this.closest(".calculator__item").getElementsByClassName("rangeParentMyr")[0];
-		// rangeMyrNumber = rangeParentUsd.value.replace(/,/, '.');
-		// rangeMyrNumber = parseFloat(rangeMyrNumber*RATE_MYR).toFixed(2).replace(/\./g, ',');
-		// rateMyr.value = rangeMyrNumber;
-		// //rangeParentMyr.value = parseFloat(rangeMyrNumber).toFixed(2).replace(".", ",");
 	}
-
-
-
-
-		// if (item.id.includes('rate')) {
-		// 	if (calc < RATE_MIN) {
-		// 		calc = RATE_MIN;
-		// 		return calc;
-		// 	} else if (calc > RATE_MAX) {
-		// 		calc = RATE_MAX;
-		// 		return calc;
-		// 	} else {
-		// 		return initCalc;
-		// 	}
-		// } else if (item.id.includes('comission')) {
-		// 	if (calc < COMMISSION_MIN) {
-		// 		calc = COMMISSION_MIN;
-		// 		return calc;
-		// 	} else if (calc > COMMISSION_MAX) {
-		// 		calc = COMMISSION_MAX;
-		// 		return calc;
-		// 	} else {
-		// 		return initCalc;
-		// 	}
-		// }
-
-
 
 }
 
 
-
-	// for (let letter of this.value) {
-	// 	if ('0123456789,'.includes(letter)) {
-	// 		number += letter;
-	// 	}
-	// }
-	//
-	// if (number.match(/\,/g) != null && number.match(/\,/g).length > 1){
-	// 	number = number.substr(0, number.lastIndexOf(","));
-	// }
-	//
-	//
-	// number = numberMinMax(initItem, number);
-	// number = formatterNumber.format(number);
-
-	// // } else {
-	// 	let initItem = this;
-
-	// this.value = this.value.replace(/[^\d\,]/g, "");
-	// number = this.value;
-	//
-	// if (number.match(/\,/g) != null && number.match(/\,/g).length > 1){
-	// 		number = number.substr(0, number.lastIndexOf(","));
-	// 	}
-
-
-	//number = parseFloat(number.replace(",", "."));
-	//number = "" + number.replace(".", ",");
-	//number = formatterNumber.format(number);
-
-
-
-// function blurHandler(event) {
-//
-// 	if (this.dataset.cur == 'usd') {
-// 		this.value = formatterCurrencyUsd.format();
-// 	} else {
-// 		this.value = formatterCurrencyMyr.format();
-// 	}
-//
-//
-//
-// }
