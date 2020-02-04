@@ -200,9 +200,34 @@ input:-webkit-autofill  {
 .calculator {
   width: 600px;
   margin: 0 auto;
+
+  small {
+    font-size: 14px;
+    display: block;
+    margin-top: 8px;
+  }
 }
+
+.calculator__attention {
+  color: #000000;
+  font-size: 12px;
+  transition: .2s ease-in-out;
+  margin-bottom: 8px;
+  padding: 10px;
+  margin: 0 -10px 8px -10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  opacity: 0.5;
+
+  &.active {
+    border-color: #00b5a4;
+    opacity: 1;
+    margin: 0 0 8px 0;
+  }
+}
+
 .calculator__title {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .calculator__item {
@@ -376,6 +401,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
   }
 }
 
+
 .my-container {
   margin-top: 25px;
 }
@@ -390,5 +416,11 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
   &__title {
     font-size: 20px;
     margin-bottom: 16px;
+  }
+
+  &__item {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 700;
   }
 }

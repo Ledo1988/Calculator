@@ -44,10 +44,13 @@ function setDoubleDependencies(textElement, rangeElement, mins, maxs) {
 			.replace(/(,.*?),(.*,)?/, "$1")
 			.replace(/(\,[\d]{2})./g, '$1');
 
+		let calcAttention = document.getElementsByClassName("calculator__attention")[0];
+
 		if (clean !== item.value) {
-			console.log('[hty');
+			calcAttention.classList.add('active');
 		} else {
 			item.value = clean;
+			calcAttention.classList.remove('active');
 		}
 		return clean;
 	}
