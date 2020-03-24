@@ -14,12 +14,12 @@
     <div class="container">
       <div class="calculator">
         <div class="calculator__title">
-          <h1>Калькулятор расчёта стоимости турпутёвки турагентом для клиента</h1>
+          <h1>Tour package's calculation for client</h1>
         </div>
         <div class="calculator__items_wrapper">
-          <div class="calculator__attention">Разрешается вводить только цифры и знак запятой, не превышая максимальных значений</div>
+          <div class="calculator__attention">Only numbers and a comma, not exceeding the maximum values</div>
           <div class="calculator__item">
-            <div class="item__title">Стоимость турпутёвки от туроператора:</div>
+            <div class="item__title">Tour package's rate by a tour operator:</div>
             <div class="calculator__input">
               <input class="rangeParentUsd" type="text" id="rateUsd" value="0">
               <label for="rateUsd">USD</label>
@@ -31,7 +31,7 @@
             <input type="range" id="rateRange" value="0" step="10" min="0" max="10000">
           </div>
           <div class="calculator__item">
-            <div class="item__title">10% комиссия турагента:</div>
+            <div class="item__title">10% commission of tour agency:</div>
             <div class="calculator__input">
               <input class="rangeParentUsd" type="text" id="comissionUsd" value="0">
               <label for="comissionUsd">USD</label>
@@ -43,17 +43,17 @@
             <input type="range" value="0" step="10" id="comissionRange" min="0" max="10000">
           </div>
           <div class="calculator__item">
-            <label class="item__title" for="bonus">Бонусы</label>
-            <input type="text" id="bonus" value="500" disabled><small class="item__desc" id="bonusHolder">* бонусы начисляются при сумме комиссии более 500 USD (2220 MYR)</small>
+            <label class="item__title" for="bonus">Bonus</label>
+            <input type="text" id="bonus" value="500" disabled><small class="item__desc" id="bonusHolder">* bonuses are added if commission is greater than 500 USD (2220 MYR)</small>
           </div>
         </div>
         <hr>
         <div class="calculator-footer">
           <div class="my-result">
-            <div class="my-result__title">Итоговая стоимость турпутёвки для клиента:</div>
+            <div class="my-result__title">Total rate of tour package for client:</div>
             <div class="my-result__item"><span id="totalUsd">0</span>&nbsp;USD</div>
             <div class="my-result__item"><span id="totalMyr">0</span>&nbsp;MYR</div>
-          </div><small><span id="totalBonus">0</span>&nbsp;бонусов начислено</small>
+          </div><small><span id="totalBonus">0</span>&nbsp;bonuses are added</small>
         </div>
       </div>
     </div>
